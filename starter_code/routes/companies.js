@@ -1,7 +1,9 @@
 const express = require('express')
-const router = express.Router()
+// const { next } = require('process')
+const ExpressError = require("../expressError")
 const db = require('../db')
 
+let router = express.Router()
 
 // router.get("/all", async function (req, res, next) 
 
@@ -20,11 +22,13 @@ const db = require('../db')
 //     })
 
 
-router.get('/', async (req, res) => {
-    const results = await db.query(`SELECT * FROM companies`)
-    console.log(results)
-    return res.json(results.rows)
-    
+router.get('/', async (req, res, next) => {   
+    try {
+        const results = await db.query(`SELECT code, name FROM companies`);
+        return res.json({"companies": results.rows});
+    } catch (err) {
+        return next(err)
+    }
 })
 
 module.exports = router;
