@@ -1,6 +1,6 @@
 // database setup for users
 
-const { Client } = require('pg');
+// const { Client } = require('pg');
 
 // let DB_URI;
 
@@ -23,11 +23,11 @@ const { Client } = require('pg');
 
 const { Client } = require("pg");
 
-const client = new Client({
+const blueClient = new Client({
   connectionString: "postgresql:///biztime"
 });
 
-client.connect();
+blueClient.connect();
 
 
-module.exports = client;
+module.exports = blueClient;
