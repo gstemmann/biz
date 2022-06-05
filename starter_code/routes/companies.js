@@ -1,9 +1,13 @@
-const express = require('express')
-// const { next } = require('process')
-const ExpressError = require("../expressError")
-const db = require('../db')
+/** Routes for companies. */
 
-let router = express.Router()
+
+const express = require("express");
+// const slugify = require("slugify");
+const ExpressError = require("../expressError")
+const db = require("../db");
+
+let router = new express.Router();
+
 
 //GET routes for list of companies
 
