@@ -2,7 +2,7 @@
 
 
 const express = require("express");
-// const slugify = require("slugify");
+const slugify = require("slugify");
 const ExpressError = require("../expressError")
 const db = require("../db");
 
@@ -10,11 +10,22 @@ let router = new express.Router();
 
 
 //GET routes for list of companies
+// router.get('/', async (req, res, next) => {
+//   try {
+//     console.log('sent request')
+//     return res.json('blue')
+//   } catch (err) {
+//     return next(err)
+//   }
+// })
+
 
 router.get('/', async (req, res, next) => {   
     try {
-        const results = await db.query(`SELECT * FROM companies`);
-        return res.json({"companies": results.rows});
+        const results = await db.query(`SELECT code, name FROM companies`);
+        console.log(results)
+        return res.json(results);
+        
     } catch (err) {
         return next(err)
     }
